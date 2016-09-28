@@ -459,32 +459,38 @@ tauBranches = commonJetCandidates.clone(
     byMediumIsolationMVArun2v1DBoldDMwLT            = cms.vstring('tauID("byMediumIsolationMVArun2v1DBoldDMwLT")','I'),
     byTightIsolationMVArun2v1DBoldDMwLT             = cms.vstring('tauID("byTightIsolationMVArun2v1DBoldDMwLT")','I'),
     byVTightIsolationMVArun2v1DBoldDMwLT            = cms.vstring('tauID("byVTightIsolationMVArun2v1DBoldDMwLT")','I'),
+    byIsolationMVArun2v1DBoldDMwLTraw               = cms.vstring('tauID("byIsolationMVArun2v1DBoldDMwLTraw")','F'),
     # Same but with Iso dR = 0.3
     byLooseIsolationMVArun2v1DBdR03oldDMwLT         = cms.vstring('tauID("byLooseIsolationMVArun2v1DBdR03oldDMwLT")','I'),
     byMediumIsolationMVArun2v1DBdR03oldDMwLT        = cms.vstring('tauID("byMediumIsolationMVArun2v1DBdR03oldDMwLT")','I'),
     byTightIsolationMVArun2v1DBdR03oldDMwLT         = cms.vstring('tauID("byTightIsolationMVArun2v1DBdR03oldDMwLT")','I'),
     byVTightIsolationMVArun2v1DBdR03oldDMwLT        = cms.vstring('tauID("byVTightIsolationMVArun2v1DBdR03oldDMwLT")','I'),
+    byIsolationMVArun2v1DBdR03oldDMwLTraw           = cms.vstring('tauID("byIsolationMVArun2v1DBdR03oldDMwLTraw")','F'),
     #With New Decay Mode Reconstruction:
     byLooseIsolationMVArun2v1DBnewDMwLT             = cms.vstring('tauID("byLooseIsolationMVArun2v1DBnewDMwLT")','I'),
     byMediumIsolationMVArun2v1DBnewDMwLT            = cms.vstring('tauID("byMediumIsolationMVArun2v1DBnewDMwLT")','I'),
     byTightIsolationMVArun2v1DBnewDMwLT             = cms.vstring('tauID("byTightIsolationMVArun2v1DBnewDMwLT")','I'),
     byVTightIsolationMVArun2v1DBnewDMwLT            = cms.vstring('tauID("byVTightIsolationMVArun2v1DBnewDMwLT")','I'),
+    byIsolationMVArun2v1DBnewDMwLTraw               = cms.vstring('tauID("byIsolationMVArun2v1DBnewDMwLTraw")','F'),
     #MVA tau ID using Pileup Weighted isolation: new 7_6_x
     #With Old Decay Mode reconstruction:
     byLooseIsolationMVArun2v1PWoldDMwLT             = cms.vstring('tauID("byLooseIsolationMVArun2v1PWoldDMwLT")','I'),
     byMediumIsolationMVArun2v1PWoldDMwLT            = cms.vstring('tauID("byMediumIsolationMVArun2v1PWoldDMwLT")','I'),
     byTightIsolationMVArun2v1PWoldDMwLT             = cms.vstring('tauID("byTightIsolationMVArun2v1PWoldDMwLT")','I'),
     byVTightIsolationMVArun2v1PWoldDMwLT            = cms.vstring('tauID("byVTightIsolationMVArun2v1PWoldDMwLT")','I'),
+    byIsolationMVArun2v1PWoldDMwLTraw               = cms.vstring('tauID("byIsolationMVArun2v1PWoldDMwLTraw")','F'),
     # Same but with Iso dR = 0.3
     byLooseIsolationMVArun2v1PWdR03oldDMwLT         = cms.vstring('tauID("byLooseIsolationMVArun2v1PWdR03oldDMwLT")','I'),
     byMediumIsolationMVArun2v1PWdR03oldDMwLT        = cms.vstring('tauID("byMediumIsolationMVArun2v1PWdR03oldDMwLT")','I'),
     byTightIsolationMVArun2v1PWdR03oldDMwLT         = cms.vstring('tauID("byTightIsolationMVArun2v1PWdR03oldDMwLT")','I'),
     byVTightIsolationMVArun2v1PWdR03oldDMwLT        = cms.vstring('tauID("byVTightIsolationMVArun2v1PWdR03oldDMwLT")','I'),
+    byIsolationMVArun2v1PWdR03oldDMwLTraw           = cms.vstring('tauID("byIsolationMVArun2v1PWdR03oldDMwLTraw")','F'),
     #With New Decay Mode Reconstruction:
     byLooseIsolationMVArun2v1PWnewDMwLT             = cms.vstring('tauID("byLooseIsolationMVArun2v1PWnewDMwLT")','I'),
     byMediumIsolationMVArun2v1PWnewDMwLT            = cms.vstring('tauID("byMediumIsolationMVArun2v1PWnewDMwLT")','I'),
     byTightIsolationMVArun2v1PWnewDMwLT             = cms.vstring('tauID("byTightIsolationMVArun2v1PWnewDMwLT")','I'),
     byVTightIsolationMVArun2v1PWnewDMwLT            = cms.vstring('tauID("byVTightIsolationMVArun2v1PWnewDMwLT")','I'),
+    byIsolationMVArun2v1PWnewDMwLTraw               = cms.vstring('tauID("byIsolationMVArun2v1PWnewDMwLTraw")','F'),
     # DecayModeFinding
     decayModeFinding                                = cms.vstring('tauID("decayModeFinding")','I'),
     decayModeFindingNewDMs                          = cms.vstring('tauID("decayModeFindingNewDMs")','I'),
