@@ -88,7 +88,5 @@ triggerMap = {
     'TripleMu_12_10_5'                                     : {'path' : 'HLT_TripleMu_12_10_5_v\\[0-9]+',                                  'objects' : ['muon'], },
     
     # other triggers from Kens list:
-    'DoubleEle33_CaloIdL_GsfTrkIdVL'                       : {'path' : 'HLT_DoubleEle33_CaloIdL_GsfTrkIdVL_v\\[0-9]+ ',                   'objects' : ['electron','electron'], },
-    
-
+    'DoubleEle33_CaloIdL_GsfTrkIdVL'                       : {'path' : 'HLT_DoubleEle33_CaloIdL_GsfTrkIdVL_v\\[0-9]+',                   'objects' : ['electron','electron'], },
 }
