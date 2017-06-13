@@ -27,7 +27,7 @@ private:
   virtual void produce(edm::Event& iEvent, const edm::EventSetup& iSetup);
   void endJob() {}
 
-  std::tuple<double,double,double,double,double> getMiniIsolation(
+  std::tuple<double,double,double,double,double,double> getMiniIsolation(
     edm::Handle<pat::PackedCandidateCollection> pfcands, 
     const reco::Candidate& cand, 
     double r_iso_min, double r_iso_max, double kt_scale);
@@ -67,12 +67,15 @@ void MiniIsolationEmbedder<T>::produce(edm::Event& iEvent, const edm::EventSetup
     double iso_nh;
     double iso_ph;
     double iso_pu;
-    std::tie(iso,iso_ch,iso_nh,iso_ph,iso_pu) = getMiniIsolation(pfcands,obj,0.05,0.2,10.);
+    double r_iso;
+    std::tie(iso,iso_ch,iso_nh,iso_ph,iso_pu,r_iso) = getMiniIsolation(pfcands,obj,0.05,0.2,10.);
 
     //neutral mini-iso for SUSYMVA
-    double iso_an=0;    
-    if(obj.pt())
-      iso_an=std::max(0., iso - iso_ch/obj.pt() );
+    double iso_an=0;
+    // if(cand.isMuon())
+    //   iso_an=iso_nh+iso_ph - cand.userFloat("rho")*mu.EffectiveArea03 * (mu.miniIsoR/0.3)**2;    
+    // if(obj.pt())
+    //   iso_an=std::max(0., iso_an/obj.pt() );
 
     newObj.addUserFloat("MiniIsolation", (float)(iso));
     newObj.addUserFloat("MiniIsolationCharged", (float)(iso_ch));
@@ -90,7 +93,7 @@ void MiniIsolationEmbedder<T>::produce(edm::Event& iEvent, const edm::EventSetup
 // Isolation
 // https://twiki.cern.ch/twiki/bin/view/CMS/SUSLeptonSF
 template<typename T>
-std::tuple<double,double,double,double,double> MiniIsolationEmbedder<T>::getMiniIsolation(edm::Handle<pat::PackedCandidateCollection> pfcands,
+std::tuple<double,double,double,double,double,double> MiniIsolationEmbedder<T>::getMiniIsolation(edm::Handle<pat::PackedCandidateCollection> pfcands,
   const reco::Candidate& cand,  
   double r_iso_min, double r_iso_max, double kt_scale)
 {
@@ -111,6 +114,7 @@ std::tuple<double,double,double,double,double> MiniIsolationEmbedder<T>::getMini
   double ptThresh(0.5);
   if (cand.isElectron()) ptThresh = 0;
   double r_iso = std::max(r_iso_min,std::min(r_iso_max, kt_scale/cand.pt()));
+  std::cout << "computing isolation for candiate at pt " << cand.pt() << " eta " << cand.eta() << " phi " << cand.phi()<<std::endl; 
   for (const pat::PackedCandidate &pfc : *pfcands) {
     if (abs(pfc.pdgId())<7) continue;
     
@@ -119,15 +123,18 @@ std::tuple<double,double,double,double,double> MiniIsolationEmbedder<T>::getMini
     
     //////////////////  NEUTRALS  /////////////////////////
     if (pfc.charge()==0){
+      std::cout << "checking neutral cand with pt "<<pfc.pt() << " eta " << pfc.eta() << " phi " << pfc.phi() << " pdgid" << pfc.pdgId()<<std::endl;
       if (pfc.pt()>ptThresh) {
 	/////////// PHOTONS ////////////
 	if (abs(pfc.pdgId())==22) {
 	  if(dr < deadcone_ph) continue;
 	  iso_ph += pfc.pt();
+	  std::cout << " accepted!" <<std::endl;
 	  /////////// NEUTRAL HADRONS ////////////
 	} else if (abs(pfc.pdgId())==130) {
 	  if(dr < deadcone_nh) continue;
 	  iso_nh += pfc.pt();
+	  std::cout << " accepted!" <<std::endl;
 	}
       }
       //////////////////  CHARGED from PV  /////////////////////////
@@ -151,7 +158,7 @@ std::tuple<double,double,double,double,double> MiniIsolationEmbedder<T>::getMini
   else iso = iso_ch;
   if (cand.pt()) iso = iso/cand.pt();
   
-  return std::make_tuple(iso,iso_ch,iso_nh,iso_ph,iso_pu);
+  return std::make_tuple(iso,iso_ch,iso_nh,iso_ph,iso_pu,r_iso);
 }
 
 template<typename T>
