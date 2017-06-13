@@ -214,7 +214,6 @@ electronBranches = commonPatCandidates.clone(
     miniIsolation                  = cms.vstring('userFloat("MiniIsolation")','F'),
     miniIsolationCharged           = cms.vstring('userFloat("MiniIsolationCharged")','F'),
     miniIsolationNeutral           = cms.vstring('userFloat("MiniIsolationNeutral")','F'),
-    miniIsolationAllNeutral        = cms.vstring('userFloat("MiniIsolationAllNeutral")','F'),
     miniIsolationPhoton            = cms.vstring('userFloat("MiniIsolationPileup")','F'),
     miniIsolationPileup            = cms.vstring('userFloat("MiniIsolationPhoton")','F'),
     susyEA                         = cms.vstring('userFloat("SUSYEA")','F'),
@@ -242,19 +241,13 @@ electronBranches = commonPatCandidates.clone(
     edB2D                          = cms.vstring('userFloat("edB2D")','F'),
     edB3D                          = cms.vstring('userFloat("edB3D")','F'),
     # energy shifts
-    pt_electronEnUp                = cms.vstring('userCand("ElectronEnUp").pt()','F'),
-    eta_electronEnUp               = cms.vstring('userCand("ElectronEnUp").eta()','F'),
-    phi_electronEnUp               = cms.vstring('userCand("ElectronEnUp").phi()','F'),
-    energy_electronEnUp            = cms.vstring('userCand("ElectronEnUp").energy()','F'),
-    pt_electronEnDown              = cms.vstring('userCand("ElectronEnDown").pt()','F'),
-    eta_electronEnDown             = cms.vstring('userCand("ElectronEnDown").eta()','F'),
-    phi_electronEnDown             = cms.vstring('userCand("ElectronEnDown").phi()','F'),
-    energy_electronEnDown          = cms.vstring('userCand("ElectronEnDown").energy()','F'),
+    pt_electronEnUp                = cms.vstring('? hasUserCand("ElectronEnUp") ? userCand("ElectronEnUp").pt() : 0','F'),
+    energy_electronEnUp            = cms.vstring('? hasUserCand("ElectronEnUp") ? userCand("ElectronEnUp").energy() : 0','F'),
+    pt_electronEnDown              = cms.vstring('? hasUserCand("ElectronEnDown") ? userCand("ElectronEnDown").pt() : 0','F'),
+    energy_electronEnDown          = cms.vstring('? hasUserCand("ElectronEnDown") ? userCand("ElectronEnDown").energy() : 0','F'),
     # uncorrected objects
-    pt_uncorrected                 = cms.vstring('userCand("uncorrected").pt()','F'),
-    eta_uncorrected                = cms.vstring('userCand("uncorrected").eta()','F'),
-    phi_uncorrected                = cms.vstring('userCand("uncorrected").phi()','F'),
-    energy_uncorrected             = cms.vstring('userCand("uncorrected").energy()','F'),
+    pt_uncorrected                 = cms.vstring('? hasUserCand("uncorrected") ? userCand("uncorrected").pt() : 0','F'),
+    energy_uncorrected             = cms.vstring('? hasUserCand("uncorrected") ? userCand("uncorrected").energy() : 0','F'),
     
 )
 
@@ -322,7 +315,6 @@ muonBranches = commonPatCandidates.clone(
     miniIsolation               = cms.vstring('userFloat("MiniIsolation")','F'),
     miniIsolationCharged        = cms.vstring('userFloat("MiniIsolationCharged")','F'),
     miniIsolationNeutral        = cms.vstring('userFloat("MiniIsolationNeutral")','F'),
-    miniIsolationAllNeutral     = cms.vstring('userFloat("MiniIsolationAllNeutral")','F'),
     miniIsolationPhoton         = cms.vstring('userFloat("MiniIsolationPileup")','F'),
     miniIsolationPileup         = cms.vstring('userFloat("MiniIsolationPhoton")','F'),
     susyEA                      = cms.vstring('userFloat("SUSYEA")','F'),
@@ -347,19 +339,13 @@ muonBranches = commonPatCandidates.clone(
     edB3D                       = cms.vstring('userFloat("edB3D")','F'),
     # corrections
     rochesterPt                 = cms.vstring('userFloat("rochesterPt")','F'),
-    rochesterEta                = cms.vstring('userFloat("rochesterEta")','F'),
-    rochesterPhi                = cms.vstring('userFloat("rochesterPhi")','F'),
     rochesterEnergy             = cms.vstring('userFloat("rochesterEnergy")','F'),
     #rochesterError              = cms.vstring('userFloat("rochesterError")','F'),
     # energy shifts
-    pt_muonEnUp                 = cms.vstring('userCand("MuonEnUp").pt()','F'),
-    eta_muonEnUp                = cms.vstring('userCand("MuonEnUp").eta()','F'),
-    phi_muonEnUp                = cms.vstring('userCand("MuonEnUp").phi()','F'),
-    energy_muonEnUp             = cms.vstring('userCand("MuonEnUp").energy()','F'),
-    pt_muonEnDown               = cms.vstring('userCand("MuonEnDown").pt()','F'),
-    eta_muonEnDown              = cms.vstring('userCand("MuonEnDown").eta()','F'),
-    phi_muonEnDown              = cms.vstring('userCand("MuonEnDown").phi()','F'),
-    energy_muonEnDown           = cms.vstring('userCand("MuonEnDown").energy()','F'),
+    pt_muonEnUp                 = cms.vstring('? hasUserCand("MuonEnUp") ? userCand("MuonEnUp").pt() : 0','F'),
+    energy_muonEnUp             = cms.vstring('? hasUserCand("MuonEnUp") ? userCand("MuonEnUp").energy() : 0','F'),
+    pt_muonEnDown               = cms.vstring('? hasUserCand("MuonEnDown") ? userCand("MuonEnDown").pt() : 0','F'),
+    energy_muonEnDown           = cms.vstring('? hasUserCand("MuonEnDown") ? userCand("MuonEnDown").energy() : 0','F'),
 
 )
 
@@ -450,14 +436,10 @@ tauBranches = commonJetCandidates.clone(
     dz_zero                                          = cms.vstring('userFloat("dz_zero")','F'),
     dxy_zero                                         = cms.vstring('userFloat("dxy_zero")','F'),
     # energy shifts
-    pt_tauEnUp                                       = cms.vstring('userCand("TauEnUp").pt()','F'),
-    eta_tauEnUp                                      = cms.vstring('userCand("TauEnUp").eta()','F'),
-    phi_tauEnUp                                      = cms.vstring('userCand("TauEnUp").phi()','F'),
-    energy_tauEnUp                                   = cms.vstring('userCand("TauEnUp").energy()','F'),
-    pt_tauEnDown                                     = cms.vstring('userCand("TauEnDown").pt()','F'),
-    eta_tauEnDown                                    = cms.vstring('userCand("TauEnDown").eta()','F'),
-    phi_tauEnDown                                    = cms.vstring('userCand("TauEnDown").phi()','F'),
-    energy_tauEnDown                                 = cms.vstring('userCand("TauEnDown").energy()','F'),
+    pt_tauEnUp                                       = cms.vstring('? hasUserCand("TauEnUp") ? userCand("TauEnUp").pt() : 0','F'),
+    energy_tauEnUp                                   = cms.vstring('? hasUserCand("TauEnUp") ? userCand("TauEnUp").energy() : 0','F'),
+    pt_tauEnDown                                     = cms.vstring('? hasUserCand("TauEnDown") ? userCand("TauEnDown").pt() : 0','F'),
+    energy_tauEnDown                                 = cms.vstring('? hasUserCand("TauEnDown") ? userCand("TauEnDown").energy() : 0','F'),
 )
 
 # photons
@@ -471,25 +453,34 @@ photonBranches = commonPatCandidates.clone(
     superClusterPhiWidth           = cms.vstring('superCluster().phiWidth','F'),
     superClusterEtaWidth           = cms.vstring('superCluster().etaWidth','F'),
     # isolation
-    full5x5SigmaIEtaIEta           = cms.vstring('userFloat("phoFull5x5SigmaIEtaIEta")','F'),
-    chargedIsolation               = cms.vstring('userFloat("phoChargedIsolation")','F'),
-    neutralHadronIsolation         = cms.vstring('userFloat("phoNeutralHadronIsolation")','F'),
-    photonIsolation                = cms.vstring('userFloat("phoPhotonIsolation")','F'),
+    gammaDR030                     = cms.vstring('userFloat("gammaDR030")','F'),
+    phoWorstChargedIsolationWithConeVeto = cms.vstring('userFloat("phoWorstChargedIsolationWithConeVeto")','F'),
+    phoESEffSigmaRR                = cms.vstring('userFloat("phoESEffSigmaRR")','F'),
+    phoFull5x5E1x3                 = cms.vstring('userFloat("phoFull5x5E1x3")','F'),
+    phoFull5x5E2x2                 = cms.vstring('userFloat("phoFull5x5E2x2")','F'),
+    phoFull5x5E2x5Max              = cms.vstring('userFloat("phoFull5x5E2x5Max")','F'),
+    phoFull5x5E5x5                 = cms.vstring('userFloat("phoFull5x5E5x5")','F'),
+    phoFull5x5SigmaIEtaIEta        = cms.vstring('userFloat("phoFull5x5SigmaIEtaIEta")','F'),
+    phoFull5x5SigmaIEtaIPhi        = cms.vstring('userFloat("phoFull5x5SigmaIEtaIPhi")','F'),
+    phoChargedIsolation            = cms.vstring('userFloat("phoChargedIsolation")','F'),
+    phoNeutralHadronIsolation      = cms.vstring('userFloat("phoNeutralHadronIsolation")','F'),
+    phoPhotonIsolation             = cms.vstring('userFloat("phoPhotonIsolation")','F'),
     effectiveAreaChargedHadrons    = cms.vstring('userFloat("EffectiveAreaChargedHadrons")','F'),
     effectiveAreaNeutralHadrons    = cms.vstring('userFloat("EffectiveAreaNeutralHadrons")','F'),
     effectiveAreaPhotons           = cms.vstring('userFloat("EffectiveAreaPhotons")','F'),
+    trackIso                       = cms.vstring('trackIso','F'),
     # type
     passElectronVeto               = cms.vstring('passElectronVeto','I'),
     hasPixelSeed                   = cms.vstring('hasPixelSeed','I'),
     isPFlowPhoton                  = cms.vstring('isPFlowPhoton','I'),
     isStandardPhoton               = cms.vstring('isStandardPhoton','I'),
     # ID
-    cutBasedLoose                  = cms.vstring('userInt("cutBasedPhotonID-Spring15-25ns-V1-standalone-loose")','I'),
-    cutBasedMedium                 = cms.vstring('userInt("cutBasedPhotonID-Spring15-25ns-V1-standalone-medium")','I'),
-    cutBasedTight                  = cms.vstring('userInt("cutBasedPhotonID-Spring15-25ns-V1-standalone-tight")','I'),
-    mvaNonTrigWP90                 = cms.vstring('userInt("mvaPhoID-Spring15-25ns-nonTrig-V2-wp90")','I'),
-    mvaNonTrigValues               = cms.vstring('userFloat("PhotonMVAEstimatorRun2Spring15NonTrig25nsV2Values")','F'),
-    mvaNonTrigCategories           = cms.vstring('userInt("PhotonMVAEstimatorRun2Spring15NonTrig25nsV2Categories")','I'),
+    cutBasedLoose                  = cms.vstring('userInt("cutBasedPhotonID-Spring16-25ns-V2p2-loose")','I'),
+    cutBasedMedium                 = cms.vstring('userInt("cutBasedPhotonID-Spring16-25ns-V2p2-medium")','I'),
+    cutBasedTight                  = cms.vstring('userInt("cutBasedPhotonID-Spring16-25ns-V2p2-tight")','I'),
+    mvaNonTrigWP90                 = cms.vstring('userInt("mvaPhoID-Spring16-nonTrig-V1-wp90")','I'),
+    mvaNonTrigValues               = cms.vstring('userFloat("PhotonMVAEstimatorRun2Spring16NonTrigV1Values")','F'),
+    mvaNonTrigCategories           = cms.vstring('userInt("PhotonMVAEstimatorRun2Spring16NonTrigV1Categories")','I'),
     # ID variables
     hadronicOverEM                 = cms.vstring('hadronicOverEm','F'),
     hadronicDepth1OverEm           = cms.vstring('hadronicDepth1OverEm','F'),
@@ -514,10 +505,8 @@ photonBranches = commonPatCandidates.clone(
     isEEDeeGap                     = cms.vstring('isEEDeeGap','I'),
     isEBEEGap                      = cms.vstring('isEBEEGap','I'),
     # uncorrected objects
-    pt_uncorrected                 = cms.vstring('userCand("uncorrected").pt()','F'),
-    eta_uncorrected                = cms.vstring('userCand("uncorrected").eta()','F'),
-    phi_uncorrected                = cms.vstring('userCand("uncorrected").phi()','F'),
-    energy_uncorrected             = cms.vstring('userCand("uncorrected").energy()','F'),
+    pt_uncorrected                 = cms.vstring('? hasUserCand("uncorrected") ? userCand("uncorrected").pt() : 0','F'),
+    energy_uncorrected             = cms.vstring('? hasUserCand("uncorrected") ? userCand("uncorrected").energy() : 0','F'),
 )
 
 # jets
@@ -547,16 +536,11 @@ jetBranches = commonJetCandidates.clone(
     isTightLepVeto                               = cms.vstring('userInt("idTightLepVeto")','I'),
     puID                                         = cms.vstring('userInt("puID")','I'),
     pileupJetIdDiscriminant                      = cms.vstring('userFloat("pileupJetIdUpdated:fullDiscriminant")','F'),
-    # TODO fix
     # energy shifts
-    #pt_jetEnUp                                   = cms.vstring('userCand("JetEnUp").pt()','F'),
-    #eta_jetEnUp                                  = cms.vstring('userCand("JetEnUp").eta()','F'),
-    #phi_jetEnUp                                  = cms.vstring('userCand("JetEnUp").phi()','F'),
-    #energy_jetEnUp                               = cms.vstring('userCand("JetEnUp").energy()','F'),
-    #pt_jetEnDown                                 = cms.vstring('userCand("JetEnDown").pt()','F'),
-    #eta_jetEnDown                                = cms.vstring('userCand("JetEnDown").eta()','F'),
-    #phi_jetEnDown                                = cms.vstring('userCand("JetEnDown").phi()','F'),
-    #energy_jetEnDown                             = cms.vstring('userCand("JetEnDown").energy()','F'),
+    pt_jetEnUp                                   = cms.vstring('? hasUserCand("JetEnUp") ? userCand("JetEnUp").pt() : 0','F'),
+    energy_jetEnUp                               = cms.vstring('? hasUserCand("JetEnUp") ? userCand("JetEnUp").energy() : 0','F'),
+    pt_jetEnDown                                 = cms.vstring('? hasUserCand("JetEnDown") ? userCand("JetEnDown").pt() : 0','F'),
+    energy_jetEnDown                             = cms.vstring('? hasUserCand("JetEnDown") ? userCand("JetEnDown").energy() : 0 ','F'),
 )
 
 # mets

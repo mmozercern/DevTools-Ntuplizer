@@ -77,6 +77,7 @@ void MiniIsolationEmbedder<T>::produce(edm::Event& iEvent, const edm::EventSetup
     // if(obj.pt())
     //   iso_an=std::max(0., iso_an/obj.pt() );
 
+    std::tie(iso,iso_ch,iso_nh,iso_ph,iso_pu) = getMiniIsolation(pfcands,obj,0.05,0.2,10.);
     newObj.addUserFloat("MiniIsolation", (float)(iso));
     newObj.addUserFloat("MiniIsolationCharged", (float)(iso_ch));
     newObj.addUserFloat("MiniIsolationNeutral", (float)(iso_nh));

@@ -162,8 +162,17 @@ selections = {
     'electrons' : 'pt>10 && abs(eta)<2.5',
     'muons'     : 'pt>10 && abs(eta)<2.4',
     'taus'      : 'pt>20 && abs(eta)<2.3',
-    'photons'   : 'pt>20 && abs(eta)<3.0',
-    'jets'      : 'pt>20 && abs(eta)<4.7',
+    'photons'   : 'pt>10 && abs(eta)<3.0',
+    'jets'      : 'pt>15 && abs(eta)<4.7',
+}
+
+# requirements to store events
+requiredCounts = {
+    'electrons' : 1,
+    'muons'     : 1,
+    'taus'      : 0,
+    'photons'   : 0,
+    'jets'      : 1,
 }
 
 # selection for cleaning (objects should match final selection)
@@ -290,10 +299,12 @@ if options.isMC:
 process.miniTree.collections.electrons.collection = collections['electrons']
 process.miniTree.collections.muons.collection = collections['muons']
 process.miniTree.collections.taus.collection = collections['taus']
-#process.miniTree.collections.photons.collection = collections['photons']
+process.miniTree.collections.photons.collection = collections['photons']
 process.miniTree.collections.jets.collection = collections['jets']
 process.miniTree.collections.pfmet.collection = collections['pfmet']
 process.miniTree.rho = collections['rho']
+for coll, count in requiredCounts.iteritems():
+    getattr(process.miniTree.collections,coll).minCount = cms.int32(count)
 
 process.miniTreePath = cms.Path()
 for f in filters:
