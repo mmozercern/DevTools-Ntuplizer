@@ -17,6 +17,7 @@ options.register('isMC', 0, VarParsing.multiplicity.singleton, VarParsing.varTyp
 options.register('reHLT', 0, VarParsing.multiplicity.singleton, VarParsing.varType.int, "Sample is reHLT")
 options.register('runMetFilter', 0, VarParsing.multiplicity.singleton, VarParsing.varType.int, "Run the recommended MET filters")
 options.register('crab', 0, VarParsing.multiplicity.singleton, VarParsing.varType.int, "Make changes needed for crab")
+options.register('sync', 0, VarParsing.multiplicity.singleton, VarParsing.varType.int, "Make changes needed for crabUse egamma smearer in syncronization mode")
 
 options.parseArguments()
 
@@ -172,7 +173,7 @@ requiredCounts = {
     'muons'     : 1,
     'taus'      : 0,
     'photons'   : 0,
-    'jets'      : 1,
+    'jets'      : 0,
 }
 
 # selection for cleaning (objects should match final selection)
@@ -311,3 +312,7 @@ for f in filters:
     process.miniTreePath += cms.ignore(f)
 process.miniTreePath += process.miniTree
 process.schedule.append(process.miniTreePath)
+
+if options.sync != 0:
+    process.calibratedPatElectrons.isSynchronization=True
+

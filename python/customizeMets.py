@@ -46,11 +46,11 @@ def customizeMets(process,coll,**kwargs):
     #getattr(process,'patPFMetTxyCorr{0}'.format(postfix)).vertexCollection = cms.InputTag(pvSrc)
 
     ## switch to uncleaned jets
-    #getattr(process,'shiftedPatJetEnUp{0}'.format(postfix)).src = cms.InputTag(jSrc)
-    #getattr(process,'shiftedPatJetEnDown{0}'.format(postfix)).src = cms.InputTag(jSrc)
+    getattr(process,'shiftedPatJetEnUp{0}'.format(postfix)).src = cms.InputTag(jSrc)
+    getattr(process,'shiftedPatJetEnDown{0}'.format(postfix)).src = cms.InputTag(jSrc)
 
     metSrc = "slimmedMETs{0}".format(postfix)
-    
+        
     ####################
     ### embed shifts ###
     ####################
